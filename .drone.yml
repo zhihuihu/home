@@ -2,7 +2,7 @@ kind: pipeline
 name: default
 type: docker
 steps:
-  - name: test
+  - name: build
     image: maven:3-jdk-10
     network_mode: host
     commands:
