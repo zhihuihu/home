@@ -4,6 +4,7 @@ type: docker
 steps:
   - name: build
     image: maven:3-jdk-8
+    network_mode: bridge
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       - mvn test -B
