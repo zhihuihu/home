@@ -1,12 +1,9 @@
 kind: pipeline
 name: default
-type: exec
-
-platform:
-  os: linux
-  arch: amd64
-
+type: docker
 steps:
-  - name: greeting
+  - name: build
+    image: maven:3-jdk-8
     commands:
-      - echo hello world
+      - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - mvn test -B
