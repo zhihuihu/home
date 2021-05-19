@@ -3,8 +3,7 @@ name: default
 type: docker
 steps:
   - name: build
-    image: maven:3-jdk-10
-    network_mode: host
+    image: maven:3-jdk-8
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       - mvn test -B
