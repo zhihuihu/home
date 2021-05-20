@@ -1,12 +1,12 @@
 kind: pipeline
-type: exec
-name: default
-
-platform:
-  os: linux
-  arch: amd64
-
+name: home
+type: docker
 steps:
-  - name: greeting
+  - name: build
+    image: maven:3-jdk-8
     commands:
-      - echo hello world
+      - mvn install -Dmaven.test.skip=true
+    volumes:
+      - /usr/local/java/apache-maven-3.6.1/conf:/root/.m2
+      - /usr/local/java/apache-maven-3.6.1/repo:/usr/local/java/apache-maven-3.6.1/repo
+
