@@ -7,5 +7,10 @@ steps:
     commands:
       - mvn install -Dmaven.test.skip=true
     volumes:
-      - /home/docker/maven/m2:/root/.m2
+      - name: mvn-config
+        path: /root/.m2
 
+volumes:
+  - name: mvn-config
+    host:
+      path: /usr/local/java/apache-maven-3.6.1/conf
