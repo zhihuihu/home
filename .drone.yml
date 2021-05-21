@@ -1,37 +1,5 @@
 ---
 kind: pipeline
-name: home
-type: docker
-steps:
-  - name: build
-    image: maven:3-jdk-8
-    commands:
-      - mvn install -Dmaven.test.skip=true
-    volumes:
-      - name: mvn-config
-        path: /root/.m2
-      - name: mvn-repo
-        path: /usr/local/java/apache-maven-3.6.1/repo
-  - name: docker-build-push
-    image: plugins/docker
-    settings:
-      registry: 192.168.8.13
-      repo: 192.168.8.13/library/tomcat8
-      username: admin
-      password: Ycl123456ycl
-      use_cache: true
-      insecure: true
-      tags:
-        - test
-volumes:
-  - name: mvn-config
-    host:
-      path: /usr/local/java/apache-maven-3.6.1/conf
-  - name: mvn-repo
-    host:
-      path: /usr/local/java/apache-maven-3.6.1/repo
----
-kind: pipeline
 name: server-end
 type: ssh
 server:
