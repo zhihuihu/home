@@ -6,15 +6,22 @@ steps:
     image: maven:3-jdk-8
     commands:
       - mvn install -Dmaven.test.skip=true
-      - rm -rf /share/home/*
-      - cp /drone/src/target/home*.jar /share/home
     volumes:
       - name: mvn-config
         path: /root/.m2
       - name: mvn-repo
         path: /usr/local/java/apache-maven-3.6.1/repo
-      - name: home-data
-        path: /share/home
+  - name: dockerfile
+    image: plugins/docker
+    settings:
+      registry: 192.168.8.13
+      repo: 192.168.8.13/library/tomcat8
+      username: admin
+      password: Ycl123456ycl
+      use_cache: true
+      tags:
+        - test
+
 
 volumes:
   - name: mvn-config
@@ -23,6 +30,3 @@ volumes:
   - name: mvn-repo
     host:
       path: /usr/local/java/apache-maven-3.6.1/repo
-  - name: home-data
-    host:
-      path: /alidata/drone/home
