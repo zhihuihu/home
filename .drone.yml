@@ -24,7 +24,7 @@ steps:
       tags:
         - test
   - name: ssh-deploy
-    image: drone-ssh
+    image: appleboy/drone-ssh
     settings:
       host: 192.168.8.11
       username: root
