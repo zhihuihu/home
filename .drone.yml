@@ -11,7 +11,7 @@ steps:
         path: /root/.m2
       - name: mvn-repo
         path: /usr/local/java/apache-maven-3.6.1/repo
-  - name: dockerfile
+  - name: docker-build-push
     image: plugins/docker
     settings:
       registry: 192.168.8.13
@@ -19,6 +19,7 @@ steps:
       username: admin
       password: Ycl123456ycl
       use_cache: true
+      insecure: true
       tags:
         - test
 
