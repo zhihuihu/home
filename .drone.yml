@@ -2,6 +2,7 @@
 kind: pipeline
 name: home
 type: docker
+image_tag: 2021.05.24.1
 steps:
   - name: build
     image: maven:3-jdk-8
@@ -22,7 +23,10 @@ steps:
       use_cache: true
       insecure: true
       tags:
-        - test
+        - "${image_tag}"
+      volumes:
+        - name: docker
+          path: /var/run/docker.sock
   - name: ssh-deploy
     image: appleboy/drone-ssh
     settings:
@@ -41,6 +45,9 @@ volumes:
   - name: mvn-repo
     host:
       path: /usr/local/java/apache-maven-3.6.1/repo
+  - name: docker
+    host:
+      path: /var/run/docker.sock
 
 
 
