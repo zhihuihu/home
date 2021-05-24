@@ -2,7 +2,8 @@
 kind: pipeline
 name: home
 type: docker
-image_tag: 2021.05.24.1
+environment:
+  publish_image_tag: "2021.05.24.1"
 steps:
   - name: build
     image: maven:3-jdk-8
@@ -23,7 +24,7 @@ steps:
       use_cache: true
       insecure: true
       tags:
-        - "${image_tag}"
+        - "${publish_image_tag}"
       volumes:
         - name: docker
           path: /var/run/docker.sock
@@ -37,7 +38,11 @@ steps:
       script:
         - echo hello
         - echo 'drone' > /root/drone.txt
-
+  - name: dingtalk
+    image: lddsb/drone-dingtalk-message
+    settings:
+      token: 02510750b5c335346de2a5d67d4a0e65bbf0163c49c094970c37de10a00720cc
+      type: markdown
 volumes:
   - name: mvn-config
     host:
