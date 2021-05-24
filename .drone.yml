@@ -24,7 +24,7 @@ steps:
       use_cache: true
       insecure: true
       tags:
-        - ${environment.publish_image_tag}
+        - ${DRONE_BUILD_NUMBER}
       volumes:
         - name: docker
           path: /var/run/docker.sock
