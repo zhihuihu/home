@@ -24,7 +24,7 @@ steps:
       use_cache: true
       insecure: true
       tags:
-        - "${publish_image_tag}"
+        - ${publish_image_tag}
       volumes:
         - name: docker
           path: /var/run/docker.sock
